@@ -40,8 +40,7 @@ public class Problem20220109 {
 
         Function<Integer, Integer> toDigitSize = number -> String.valueOf(number).length();
 
-        Supplier<Integer> compute = () -> {
-            return Stream.iterate(1, i -> i + 1) //Infinite Stream
+        Supplier<Integer> compute = () -> Stream.iterate(1, i -> i + 1) //Infinite Stream
                 .parallel()
                 .filter(isDivisible_1_to_20)
                 .limit(1)
@@ -49,17 +48,14 @@ public class Problem20220109 {
                 .map(toDigitSize)
                 .findFirst()
                 .orElseThrow();
-        };
 
         //Defensive coding using Timeout handling
         //Stream API doesn´t have timeout support
-        Supplier<Integer> computeAsync = () -> {
-            return CompletableFuture
+        Supplier<Integer> computeAsync = () -> CompletableFuture
                     .supplyAsync(() -> compute.get())
                     .orTimeout(120, TimeUnit.SECONDS)
                     .handle((response, ex) -> (Objects.isNull(ex)) ? response : -99)
                     .join();
-        };
 
         System.out.println("Number of CPU Cores: " + Runtime.getRuntime().availableProcessors());
 
