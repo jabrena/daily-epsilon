@@ -1,4 +1,4 @@
-package ch06.jbang.dailyepsilon;
+package jbang;
 
 public class Problem20211228 {
 

@@ -1,4 +1,4 @@
-package ch06.jbang.dailyepsilon;
+package jbang;
 
 import java.math.BigDecimal;
 import java.util.function.Predicate;
