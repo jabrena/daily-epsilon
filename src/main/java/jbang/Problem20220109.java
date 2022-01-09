@@ -1,5 +1,6 @@
 ///usr/bin/env jbang "$0" "$@" ; exit $?
 //DEPS org.assertj:assertj-core:3.21.0
+//DEPS org.apache.commons:commons-math3:3.6.1
 
 package jbang;
 
@@ -18,12 +19,16 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import org.apache.commons.math3.primes.Primes;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.within;
 
 public class Problem20220109 {
 
     public static void main(String[] args) {
+
+        //Alternative 1
 
         Predicate<Integer> isDivisible_1_to_20 = number -> {
             var counter = IntStream.rangeClosed(1, 20).boxed()
@@ -52,12 +57,8 @@ public class Problem20220109 {
             return CompletableFuture
                     .supplyAsync(() -> compute.get())
                     .orTimeout(120, TimeUnit.SECONDS)
-                    .handle((response, ex) -> {
-                        if(!Objects.isNull(ex)) {
-                            return -99;
-                        }
-                        return response;
-                    }).join();
+                    .handle((response, ex) -> (Objects.isNull(ex)) ? response : -99)
+                    .join();
         };
 
         System.out.println("Number of CPU Cores: " + Runtime.getRuntime().availableProcessors());
