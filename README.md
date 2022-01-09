@@ -10,7 +10,7 @@ In this folder, I will try to solve Math problems from:
 
 ## 2022/01/09
 
-![](20220109.png)
+![](docs/20220109.png)
 
 ```
 jbang Problem20220109.java
@@ -18,7 +18,7 @@ jbang Problem20220109.java
 
 ## 2022/01/06
 
-![](20220106.png)
+![](docs/20220106.png)
 
 ```
 jbang Problem20220106.java
@@ -26,7 +26,7 @@ jbang Problem20220106.java
 
 ## 2022/01/02
 
-![](20220102.png)
+![](docs/20220102.png)
 
 ```
 jbang Problem20220102.java
@@ -34,7 +34,7 @@ jbang Problem20220102.java
 
 ## 2022/01/01
 
-![](20220101.png)
+![](docs/20220101.png)
 
 ```
 jbang Problem20220101.java
@@ -44,7 +44,7 @@ jbang Problem20220101.java
 
 ## 2021/12/31
 
-![](20211231.png)
+![](docs/20211231.png)
 
 ```
 jbang Problem20211231.java
@@ -52,7 +52,7 @@ jbang Problem20211231.java
 
 ## 2021/12/29
 
-![](20211229.png)
+![](docs/20211229.png)
 
 ```
 jbang Problem20211229.java
@@ -60,7 +60,7 @@ jbang Problem20211229.java
 
 ## 2021/12/28
 
-![](20211228.png)
+![](docs/20211228.png)
 
 ```
 jbang Problem20211228.java
@@ -68,7 +68,7 @@ jbang Problem20211228.java
 
 ## 2021/12/27
 
-![](20211227.png)
+![](docs/20211227.png)
 
 ```
 jbang Problem20211227.java
@@ -76,7 +76,7 @@ jbang Problem20211227.java
 
 ## 2021/12/26
 
-![](20211226.png)
+![](docs/20211226.png)
 
 ```
 jbang Problem20211226.java
@@ -84,26 +84,8 @@ jbang Problem20211226.java
 
 ## 2021/12/24
 
-![](20211224.png)
+![](docs/20211224.png)
 
 ```
 jbang Problem20211224.java
-```
-
-## How to install Jbang?
-
-```
-sdk install jbang
-```
-
-## Testing Jbang
-
-```
-jbang HelloWorld.java
-```
-
-```
-curl \
-  -H "Accept: application/vnd.github.v3+json" \
-  https://api.github.com/search?l=Java&q="import+lombok."&type=Code
 ```
