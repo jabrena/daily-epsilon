@@ -58,8 +58,56 @@
 			</plugin>
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.22.2</version>
+				<version>3.0.0-M5</version>
 			</plugin>
+
+    	<!-- Checkstyle -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>3.1.2</version>
+				<configuration>
+					<configLocation>checkstyle.xml</configLocation>
+					<encoding>UTF-8</encoding>
+					<consoleOutput>true</consoleOutput>
+					<failsOnError>true</failsOnError>
+					<linkXRef>false</linkXRef>
+				</configuration>
+				<executions>
+					<execution>
+						<id>validate</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+      <!-- Google Java Format -->
+			<plugin>
+				<groupId>com.coveo</groupId>
+				<artifactId>fmt-maven-plugin</artifactId>
+				<version>2.13</version>
+				<configuration>
+					<sourceDirectory>src/main/java</sourceDirectory>
+					<testSourceDirectory>src/test/java</testSourceDirectory>
+					<verbose>false</verbose>
+					<filesNamePattern>.*\.java</filesNamePattern>
+					<skip>false</skip>
+					<skipSortingImports>false</skipSortingImports>
+					<style>google</style>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>check</goal>
+							<goal>format</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
 		</plugins>
   </build>
 </project>

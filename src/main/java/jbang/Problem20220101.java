@@ -1,34 +1,38 @@
-///usr/bin/env jbang "$0" "$@" ; exit $?
-//DEPS org.assertj:assertj-core:3.21.0
+/// usr/bin/env jbang "$0" "$@" ; exit $?
+// DEPS org.assertj:assertj-core:3.21.0
 
 package jbang;
-
-import java.math.MathContext;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.within;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
+
 public class Problem20220101 {
 
-    public static void main(String[] args) {
+  public static void main(String[] args) {
 
-        var roundingMode = RoundingMode.HALF_UP;
-        var precision = new MathContext(10); 
-        var parameter = BigDecimal.valueOf(216).sqrt(precision);
+    var roundingMode = RoundingMode.HALF_UP;
+    var precision = new MathContext(10);
+    var parameter = BigDecimal.valueOf(216).sqrt(precision);
 
-        //https://www.google.com/search?q=tetrahedron+surface+area
-        var surface = BigDecimal.valueOf(3).sqrt(precision).multiply(parameter.pow(2));
-        
-        //https://www.google.com/search?q=tetrahedron+volume
-        var volume = parameter.pow(3).divide(BigDecimal.valueOf(6).multiply(BigDecimal.valueOf(2).sqrt(precision)), roundingMode);
+    // https://www.google.com/search?q=tetrahedron+surface+area
+    var surface = BigDecimal.valueOf(3).sqrt(precision).multiply(parameter.pow(2));
 
-        var result = surface.divide(volume, roundingMode);
+    // https://www.google.com/search?q=tetrahedron+volume
+    var volume =
+        parameter
+            .pow(3)
+            .divide(
+                BigDecimal.valueOf(6).multiply(BigDecimal.valueOf(2).sqrt(precision)),
+                roundingMode);
 
-        assertThat(result)
-            .usingComparator(BigDecimal::compareTo)
-            .isCloseTo(BigDecimal.valueOf(1), within(BigDecimal.valueOf(0.00001)));
-    }
+    var result = surface.divide(volume, roundingMode);
+
+    assertThat(result)
+        .usingComparator(BigDecimal::compareTo)
+        .isCloseTo(BigDecimal.valueOf(1), within(BigDecimal.valueOf(0.00001)));
+  }
 }
-

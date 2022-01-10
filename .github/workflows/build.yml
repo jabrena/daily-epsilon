@@ -14,5 +14,10 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
       - name: Build with Maven Wrapper
-        run: ./mvnw verify -B
-               
+        run: |
+          export MAVEN_OPTS=" --add-exports jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED \
+            --add-exports jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED \
+            --add-exports jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED \
+            --add-exports jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED \
+            --add-exports jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED "
+          ./mvnw verify -B      

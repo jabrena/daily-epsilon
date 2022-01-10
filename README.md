@@ -8,6 +8,26 @@ In this folder, I will try to solve Math problems from:
 
 [![](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/jabrena/daily-epsilon)
 
+## How to run in local?
+
+```
+export MAVEN_OPTS=" --add-exports jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED \
+  --add-exports jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED \
+  --add-exports jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED \
+  --add-exports jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED \
+  --add-exports jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED "
+
+mvn clean verify
+```
+
+## 2022/01/10
+
+![](docs/20220110.png)
+
+```
+jbang Problem20220110.java
+```
+
 ## 2022/01/09
 
 ![](docs/20220109.png)
