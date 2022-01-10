@@ -92,7 +92,7 @@ public class Problem20220110 {
         algorithmData.stream()
                 .forEach(obj -> regression.addData(obj.complexity, obj.processingTime));
 
-        // Copy & Paste the equation to Desmes
+        // Copy & Paste the equation to Desmos
         // https://www.desmos.com/calculator?lang=en
         System.out.println(
                 "y = " + regression.getIntercept() + " + " + regression.getSlope() + " x");
