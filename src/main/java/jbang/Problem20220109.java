@@ -19,53 +19,54 @@ import java.util.stream.Stream;
 
 public class Problem20220109 {
 
-  public static void main(String[] args) {
+    public static void main(String[] args) {
 
-    // Alternative 1
+        // Alternative 1
 
-    Predicate<Integer> isDivisible_1_to_20 =
-        number -> {
-          var counter =
-              IntStream.rangeClosed(1, 20)
-                  .boxed()
-                  .map(n -> (number % n == 0) ? 1 : 0)
-                  .reduce(0, Integer::sum);
+        Predicate<Integer> isDivisible_1_to_20 =
+                number -> {
+                    var counter =
+                            IntStream.rangeClosed(1, 20)
+                                    .boxed()
+                                    .map(n -> (number % n == 0) ? 1 : 0)
+                                    .reduce(0, Integer::sum);
 
-          return (counter == 20) ? true : false;
-        };
+                    return (counter == 20) ? true : false;
+                };
 
-    Function<Integer, Integer> toDigitSize = number -> String.valueOf(number).length();
+        Function<Integer, Integer> toDigitSize = number -> String.valueOf(number).length();
 
-    Supplier<Integer> compute =
-        () ->
-            Stream.iterate(1, i -> i + 1) // Infinite Stream
-                .parallel()
-                .filter(isDivisible_1_to_20)
-                .limit(1)
-                .peek(System.out::println)
-                .map(toDigitSize)
-                .findFirst()
-                .orElseThrow();
+        Supplier<Integer> compute =
+                () ->
+                        Stream.iterate(1, i -> i + 1) // Infinite Stream
+                                .parallel()
+                                .filter(isDivisible_1_to_20)
+                                .limit(1)
+                                .peek(System.out::println)
+                                .map(toDigitSize)
+                                .findFirst()
+                                .orElseThrow();
 
-    // Defensive coding using Timeout handling
-    // Stream API doesn´t have timeout support
-    Supplier<Integer> computeAsync =
-        () ->
-            CompletableFuture.supplyAsync(() -> compute.get())
-                .orTimeout(120, TimeUnit.SECONDS)
-                .handle((response, ex) -> (Objects.isNull(ex)) ? response : -99)
-                .join();
+        // Defensive coding using Timeout handling
+        // Stream API doesn´t have timeout support
+        Supplier<Integer> computeAsync =
+                () ->
+                        CompletableFuture.supplyAsync(() -> compute.get())
+                                .orTimeout(120, TimeUnit.SECONDS)
+                                .handle((response, ex) -> (Objects.isNull(ex)) ? response : -99)
+                                .join();
 
-    System.out.println("Number of CPU Cores: " + Runtime.getRuntime().availableProcessors());
+        System.out.println("Number of CPU Cores: " + Runtime.getRuntime().availableProcessors());
 
-    Instant start = Instant.now();
+        Instant start = Instant.now();
 
-    var result = computeAsync.get();
-    System.out.println(result);
+        var result = computeAsync.get();
+        System.out.println(result);
 
-    Instant end = Instant.now();
-    System.out.println("Process time: " + Duration.between(start, end).toSeconds() + " seconds");
+        Instant end = Instant.now();
+        System.out.println(
+                "Process time: " + Duration.between(start, end).toSeconds() + " seconds");
 
-    assertThat(result).isEqualTo(9);
-  }
+        assertThat(result).isEqualTo(9);
+    }
 }

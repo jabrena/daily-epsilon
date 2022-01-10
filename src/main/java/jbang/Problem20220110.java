@@ -10,17 +10,17 @@ import java.util.stream.IntStream;
 
 public class Problem20220110 {
 
-  public static void main(String[] args) {
+    public static void main(String[] args) {
 
-    Function<Long, BigDecimal> factorial =
-        limit ->
-            IntStream.iterate(limit.intValue(), i -> i - 1)
-                .limit(limit)
-                .mapToObj(BigDecimal::valueOf)
-                .reduce((n1, n2) -> n1.multiply(n2))
-                .get();
+        Function<Long, BigDecimal> factorial =
+                limit ->
+                        IntStream.iterate(limit.intValue(), i -> i - 1)
+                                .limit(limit)
+                                .mapToObj(BigDecimal::valueOf)
+                                .reduce((n1, n2) -> n1.multiply(n2))
+                                .get();
 
-    // System.out.println(result);
+        // System.out.println(result);
 
-  }
+    }
 }
