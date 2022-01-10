@@ -18,6 +18,8 @@ export MAVEN_OPTS=" --add-exports jdk.compiler/com.sun.tools.javac.api=ALL-UNNAM
 --add-exports jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED "
 
 mvn clean verify
+
+mvn compile exec:java -Dexec.mainClass="jbang.Problem20220110"
 ```
 
 ## 2022/01/10

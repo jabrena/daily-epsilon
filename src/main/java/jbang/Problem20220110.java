@@ -6,7 +6,10 @@ package jbang;
 
 import java.math.BigDecimal;
 import java.util.function.Function;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Problem20220110 {
 
@@ -17,10 +20,23 @@ public class Problem20220110 {
                         IntStream.iterate(limit.intValue(), i -> i - 1)
                                 .limit(limit)
                                 .mapToObj(BigDecimal::valueOf)
-                                .reduce((n1, n2) -> n1.multiply(n2))
-                                .get();
+                                .reduce(BigDecimal.ONE, BigDecimal::multiply);
 
-        // System.out.println(result);
+        record Solution2(Integer x, Integer y) {}
+
+        var iterations = 1000;
+        IntStream.range(1, iterations)
+                .skip(1)
+                .limit(10)
+                .mapToObj(x -> {
+                    return IntStream.range(1, iterations)
+                        .mapToObj(y -> {
+                            return new Solution2(x, y);
+                        });
+                })
+                .forEach(System.out::println);
+
+        // System.out.println(compute.get());
 
     }
 }
