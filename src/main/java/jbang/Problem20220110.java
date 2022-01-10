@@ -5,10 +5,13 @@
 package jbang;
 
 import java.math.BigDecimal;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.function.Function;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
 public class Problem20220110 {
@@ -22,21 +25,32 @@ public class Problem20220110 {
                                 .mapToObj(BigDecimal::valueOf)
                                 .reduce(BigDecimal.ONE, BigDecimal::multiply);
 
-        record Solution2(Integer x, Integer y) {}
+        record Solution(Long x, Long y) {}
 
-        var iterations = 1000;
-        IntStream.range(1, iterations)
-                .skip(1)
-                .limit(10)
+        var iterations = 10;
+
+        Instant start = Instant.now();
+
+        var result = LongStream.rangeClosed(1, iterations)
                 .mapToObj(x -> {
-                    return IntStream.range(1, iterations)
+                    return LongStream.rangeClosed(1, iterations)
                         .mapToObj(y -> {
-                            return new Solution2(x, y);
+                            return new Solution(x, y);
                         });
                 })
-                .forEach(System.out::println);
+                .flatMap(x -> x)
+                .filter(obj -> {
+                    var left = factorial.apply(obj.y).multiply(factorial.apply(obj.y - 1));
+                    var right = factorial.apply(obj.x);
+                    return left.compareTo(right) == 0;
+                })
+                .peek(System.out::println)
+                .collect(Collectors.toUnmodifiableList());
+
+        Instant end = Instant.now();
+        System.out.println(
+                "Process time: " + Duration.between(start, end).toMillis() + " milliseconds");
 
         // System.out.println(compute.get());
-
     }
 }
