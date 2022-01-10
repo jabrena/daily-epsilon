@@ -18,6 +18,17 @@ public class Problem20220110 {
 
     public static void main(String[] args) {
 
+        record Solution(Long x, Long y) {}
+
+        Function<Integer, Stream<Solution>> crossProduct =
+                number ->
+                        LongStream.rangeClosed(1, number)
+                                .mapToObj(
+                                        x ->
+                                                LongStream.rangeClosed(1, number)
+                                                        .mapToObj(y -> new Solution(x, y)))
+                                .flatMap(x -> x);
+
         Function<Long, BigDecimal> factorial =
                 limit ->
                         IntStream.iterate(limit.intValue(), i -> i - 1)
@@ -25,24 +36,8 @@ public class Problem20220110 {
                                 .mapToObj(BigDecimal::valueOf)
                                 .reduce(BigDecimal.ONE, BigDecimal::multiply);
 
-        record Solution(Long x, Long y) {}
-
-        Function<Integer, Stream<Solution>> crossProduct =
-                (number) ->
-                        LongStream.rangeClosed(1, number)
-                                .mapToObj(
-                                        x -> {
-                                            return LongStream.rangeClosed(1, number)
-                                                    .mapToObj(
-                                                            y -> {
-                                                                return new Solution(x, y);
-                                                            });
-                                        })
-                                .flatMap(x -> x);
-
         Predicate<Solution> checkEquation =
                 alternative -> {
-                    // y!(y-1)! = x!
                     var left =
                             factorial
                                     .apply(alternative.y)
@@ -57,9 +52,9 @@ public class Problem20220110 {
 
         var result =
                 Stream.of(iterations)
-                        .flatMap(crossProduct)
-                        .filter(checkEquation)
-                        .max(Comparator.comparing(Solution::x))
+                        .flatMap(crossProduct) // Get all combinations
+                        .filter(checkEquation) // Check y!(y-1)! = x!
+                        .max(Comparator.comparing(Solution::x)) // Get Max
                         .get();
 
         System.out.println(result);
