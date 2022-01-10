@@ -19,7 +19,7 @@ export MAVEN_OPTS=" --add-exports jdk.compiler/com.sun.tools.javac.api=ALL-UNNAM
 
 mvn clean verify
 
-mvn compile exec:java -Dexec.mainClass="jbang.Problem20220110"
+mvn compile exec:java -Dexec.mainClass="edu.jab.math.Problem20220110"
 ```
 
 ## 2022/01/10

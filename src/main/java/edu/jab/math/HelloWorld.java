@@ -1,4 +1,4 @@
-package jbang;
+package edu.jab.math;
 
 public class HelloWorld {
     public static void main(String[] args) {

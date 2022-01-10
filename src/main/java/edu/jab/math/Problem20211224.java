@@ -1,4 +1,4 @@
-package jbang;
+package edu.jab.math;
 
 import java.util.function.Function;
 import java.util.stream.Collectors;

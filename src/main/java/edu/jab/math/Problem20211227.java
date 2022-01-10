@@ -1,4 +1,4 @@
-package jbang;
+package edu.jab.math;
 
 import java.math.BigDecimal;
 import java.math.MathContext;

@@ -1,7 +1,7 @@
 /// usr/bin/env jbang "$0" "$@" ; exit $?
 // DEPS org.assertj:assertj-core:3.21.0
 
-package jbang;
+package edu.jab.math;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
