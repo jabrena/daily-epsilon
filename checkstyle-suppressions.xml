@@ -6,7 +6,6 @@
 <suppressions>
     <suppress checks="Javadoc" files="." />
     <suppress checks="FinalParameters" files="." />
-    <suppress checks="Indentation" files="." />
 
     <!-- Supressed by the project nature -->
     <suppress checks="MagicNumber" files="." />
