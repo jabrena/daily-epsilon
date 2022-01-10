@@ -41,8 +41,6 @@ public class Problem20220110 {
                         });
                 })
                 .flatMap(x -> x);
-                //.collect(Collectors.toUnmodifiableList());
-
 
         Predicate<Solution> checkEquation = alternative -> {
             //y!(y-1)! = x!
