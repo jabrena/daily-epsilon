@@ -30,8 +30,6 @@ public class Problem20220110 {
 
         record Solution(Long x, Long y) {}
 
-        var iterations = 10;
-
         Function<Integer, Stream<Solution>> crossProduct = (number) ->
             LongStream.rangeClosed(1, number)
                 .mapToObj(x -> {
@@ -50,6 +48,8 @@ public class Problem20220110 {
         };
 
         Instant start = Instant.now();
+
+        var iterations = 10;
 
         var result = Stream.of(iterations)
                 .flatMap(crossProduct)
