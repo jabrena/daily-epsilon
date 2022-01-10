@@ -10,9 +10,11 @@ import java.time.Instant;
 import java.util.Comparator;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
+import org.apache.commons.math3.stat.regression.SimpleRegression;
 
 public class Problem20220110 {
 
@@ -46,21 +48,46 @@ public class Problem20220110 {
                     return left.compareTo(right) == 0;
                 };
 
-        Instant start = Instant.now();
+        Function<Integer, Solution> algorithm =
+                complexity ->
+                        Stream.of(complexity)
+                                .flatMap(crossProduct) // Get all combinations
+                                .filter(checkEquation) // Check y!(y-1)! = x!
+                                .max(Comparator.comparing(Solution::x)) // Get Max
+                                .get();
 
-        var iterations = 10;
+        record MetadataSolution(Integer complexity, Solution solution, Long processingTime) {}
 
-        var result =
-                Stream.of(iterations)
-                        .flatMap(crossProduct) // Get all combinations
-                        .filter(checkEquation) // Check y!(y-1)! = x!
-                        .max(Comparator.comparing(Solution::x)) // Get Max
-                        .get();
+        Function<Integer, MetadataSolution> processingTimeDecorator =
+                complexity -> {
+                    Instant start = Instant.now();
 
-        System.out.println(result);
+                    var result = algorithm.apply(complexity);
 
-        Instant end = Instant.now();
+                    Instant end = Instant.now();
+                    var processingTime = Duration.between(start, end).toMillis();
+
+                    return new MetadataSolution(complexity, result, processingTime);
+                };
+
+        var algorithmData =
+                IntStream.iterate(100, i -> i + 100)
+                        .parallel()
+                        .limit(5)
+                        .mapToObj(x -> processingTimeDecorator.apply(x))
+                        .peek(System.out::println)
+                        .collect(Collectors.toUnmodifiableList());
+
+        var regression = new SimpleRegression();
+
+        // https://commons.apache.org/proper/commons-math/userguide/stat.html#a1.4_Simple_regression
+        algorithmData.stream()
+                .forEach(obj -> regression.addData(obj.complexity, obj.processingTime));
+
+        // Copy & Paste the equation to Desmes
+        // https://www.desmos.com/calculator?lang=en
         System.out.println(
-                "Process time: " + Duration.between(start, end).toMillis() + " milliseconds");
+                "y = " + regression.getIntercept() + " + " + regression.getSlope() + " x");
+        System.out.println(regression.predict(1000));
     }
 }
