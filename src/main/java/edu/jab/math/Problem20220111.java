@@ -31,6 +31,8 @@ public class Problem20220111 {
         var solution = numerator.divide(denominator, RoundingMode.HALF_UP);
 
         System.out.println(solution);
-        assertThat(solution).isEqualTo(BigDecimal.valueOf(11));
+        assertThat(solution)
+                .usingComparator(BigDecimal::compareTo)
+                .isEqualTo(BigDecimal.valueOf(11));
     }
 }
