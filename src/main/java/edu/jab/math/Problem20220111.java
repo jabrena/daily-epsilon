@@ -15,6 +15,8 @@ public class Problem20220111 {
 
     public static void main(String[] args) {
 
+        // TODO Replace with this function DRY
+        // https://commons.apache.org/proper/commons-math/javadocs/api-3.3/org/apache/commons/math3/util/CombinatoricsUtils.html#factorial(int)
         Function<Long, BigDecimal> factorial =
                 limit ->
                         LongStream.iterate(limit, i -> i - 1)
