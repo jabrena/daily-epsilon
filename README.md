@@ -22,6 +22,15 @@ mvn clean verify
 mvn compile exec:java -Dexec.mainClass="edu.jab.math.Problem20220110"
 ```
 
+## 2022/01/11
+
+![](docs/20220111.png)
+
+```
+jbang Problem20220111.java
+```
+
+
 ## 2022/01/10
 
 ![](docs/20220110.png)
