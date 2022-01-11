@@ -29,9 +29,7 @@ public class Problem20220111 {
                         .map(factorial)
                         .reduce(BigDecimal.ONE, BigDecimal::multiply);
         var denominator = BigDecimal.valueOf(5).pow(5).subtract(BigDecimal.ONE);
-
-        var roundingMode = RoundingMode.HALF_UP;
-        var solution = numerator.divide(denominator, roundingMode);
+        var solution = numerator.divide(denominator, RoundingMode.HALF_UP);
 
         System.out.println(solution);
         assertThat(solution).isEqualTo(BigDecimal.valueOf(11));
