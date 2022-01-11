@@ -9,7 +9,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.function.Function;
-import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 
 public class Problem20220111 {
@@ -18,7 +17,7 @@ public class Problem20220111 {
 
         Function<Long, BigDecimal> factorial =
                 limit ->
-                        IntStream.iterate(limit.intValue(), i -> i - 1)
+                        LongStream.iterate(limit, i -> i - 1)
                                 .limit(limit)
                                 .mapToObj(BigDecimal::valueOf)
                                 .reduce(BigDecimal.ONE, BigDecimal::multiply);
