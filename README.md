@@ -11,6 +11,8 @@ In this folder, I will try to solve Math problems from:
 ## How to run in local?
 
 ```
+sdk install jbang
+
 export MAVEN_OPTS=" --add-exports jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED \
 --add-exports jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED \
 --add-exports jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED \
@@ -19,6 +21,7 @@ export MAVEN_OPTS=" --add-exports jdk.compiler/com.sun.tools.javac.api=ALL-UNNAM
 
 mvn clean verify
 
+jbang Problem20220110
 mvn compile exec:java -Dexec.mainClass="edu.jab.math.Problem20220110"
 ```
 

@@ -4,13 +4,11 @@
 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 <modelVersion>4.0.0</modelVersion>
 
-<groupId>com.mycompany.app</groupId>
-<artifactId>my-app</artifactId>
-<version>1.0-SNAPSHOT</version>
+<groupId>com.jab.math</groupId>
+<artifactId>daily-epsilon</artifactId>
+<version>0.1.0-SNAPSHOT</version>
 
-<name>my-app</name>
-<!-- FIXME change it to the project's website -->
-<url>http://www.example.com</url>
+<name>daily-epsilon</name>
 
 <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
