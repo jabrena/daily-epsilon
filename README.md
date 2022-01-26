@@ -25,6 +25,14 @@ jbang Problem20220110
 mvn compile exec:java -Dexec.mainClass="edu.jab.math.Problem20220110"
 ```
 
+## 2022/01/35
+
+![](docs/20220125.png)
+
+```
+jbang Problem20220125.java
+```
+
 ## 2022/01/13
 
 ![](docs/20220113.png)
