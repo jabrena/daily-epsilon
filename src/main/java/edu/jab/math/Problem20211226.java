@@ -1,18 +1,19 @@
+/// usr/bin/env jbang "$0" "$@" ; exit $?
+// DEPS org.assertj:assertj-core:3.21.0
+// DEPS org.apache.commons:commons-math3:3.6.1
+
 package edu.jab.math;
 
 import java.math.BigDecimal;
 import java.util.function.Predicate;
-import java.util.stream.LongStream;
 import java.util.stream.Stream;
+import org.apache.commons.math3.primes.Primes;
 
 public class Problem20211226 {
 
     public static void main(String[] args) {
 
-        Predicate<Integer> isPrime =
-                number -> {
-                    return LongStream.rangeClosed(2, number / 2).noneMatch(i -> number % i == 0);
-                };
+        Predicate<Integer> isPrime = number -> Primes.isPrime(number);
 
         Predicate<Integer> isOdd = number -> (number % 2 == 0) ? false : true;
 
