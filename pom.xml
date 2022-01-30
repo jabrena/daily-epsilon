@@ -160,6 +160,9 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
                             <include>src/main/java/**/*.java</include>
                             <include>src/test/java/**/*.java</include>
                         </includes>
+                        <excludes>
+                            <include>src/main/java/**/Problem20220130.java</include>
+                        </excludes>
                         <removeUnusedImports />
                         <endWithNewline/>
                         <indent>

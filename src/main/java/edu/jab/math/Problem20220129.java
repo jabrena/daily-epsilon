@@ -11,16 +11,14 @@ public class Problem20220129 {
 
         var util = new EvalUtilities(false, true);
 
-        //TODO Not working
+        // TODO Not working
         var equation =
-           """
-           Solve(
-           {
-           x^2 + y^2 - x - y == 814,
-           (x*y) - x - y == 27
-           },
-           {x,y})
-           """;
+                """
+                Solve(
+                {x^2 + y^2 - x - y == 814,
+                (x*y) - x - y == 27 },
+                {x,y})
+                """;
         var solution = util.evaluate(equation);
 
         System.out.println(solution);
