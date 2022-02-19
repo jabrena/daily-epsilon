@@ -1,5 +1,5 @@
 /// usr/bin/env jbang "$0" "$@" ; exit $?
-// DEPS org.assertj:assertj-core:3.21.0
+//DEPS org.assertj:assertj-core:3.21.0
 
 package edu.jab.math;
 
@@ -14,14 +14,13 @@ import java.util.stream.IntStream;
 public class Problem20211229 {
 
     public static void main(String[] args) {
-
-        Function<Long, BigDecimal> factorial =
-                limit ->
-                        IntStream.iterate(limit.intValue(), i -> i - 1)
-                                .limit(limit)
-                                .mapToObj(BigDecimal::valueOf)
-                                .reduce((n1, n2) -> n1.multiply(n2))
-                                .get();
+        Function<Long, BigDecimal> factorial = limit ->
+            IntStream
+                .iterate(limit.intValue(), i -> i - 1)
+                .limit(limit)
+                .mapToObj(BigDecimal::valueOf)
+                .reduce((n1, n2) -> n1.multiply(n2))
+                .get();
 
         var precision = 50;
         var roundingMode = RoundingMode.HALF_UP;
@@ -33,7 +32,7 @@ public class Problem20211229 {
 
         assertThat(result.doubleValue()).as("Result is: ").isEqualTo(29);
         assertThat(result)
-                .usingComparator(BigDecimal::compareTo)
-                .isCloseTo(BigDecimal.valueOf(29), within(BigDecimal.valueOf(0.000000001)));
+            .usingComparator(BigDecimal::compareTo)
+            .isCloseTo(BigDecimal.valueOf(29), within(BigDecimal.valueOf(0.000000001)));
     }
 }

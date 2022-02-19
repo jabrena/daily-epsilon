@@ -1,5 +1,5 @@
 /// usr/bin/env jbang "$0" "$@" ; exit $?
-// DEPS org.assertj:assertj-core:3.21.0
+//DEPS org.assertj:assertj-core:3.21.0
 
 package edu.jab.math;
 
@@ -12,7 +12,6 @@ import java.util.stream.IntStream;
 public class Problem20220131 {
 
     public static void main(String[] args) {
-
         BiPredicate<Integer, Integer> isMultiple = (l, i) -> l % i == 0;
         Predicate<Integer> isMultiple5 = number -> isMultiple.test(number, 5);
         Predicate<Integer> isMultiple7 = number -> isMultiple.test(number, 7);

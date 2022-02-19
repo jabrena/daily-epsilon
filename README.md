@@ -13,16 +13,18 @@ In this folder, I will try to solve Math problems from:
 ```
 sdk install jbang
 
-export MAVEN_OPTS=" --add-exports jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED \
---add-exports jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED \
---add-exports jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED \
---add-exports jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED \
---add-exports jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED "
-
 mvn clean verify
 
-jbang Problem20220110
+jbang Problem20220110.java
 mvn compile exec:java -Dexec.mainClass="edu.jab.math.Problem20220110"
+```
+
+## 2022/02/19
+
+![](docs/20220219.png)
+
+```
+jbang Problem20220219.java
 ```
 
 ## 2022/02/05
