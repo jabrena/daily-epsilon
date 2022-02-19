@@ -11,10 +11,12 @@ public class Problem20220219 {
 
     public static void main(String[] args) {
         var solution = IntStream
-            .rangeClosed(1, 100)
+            .rangeClosed(10, 99)
             .boxed()
-            .filter(value -> value.toString().indexOf("9") != -1)
-            .count();
+            .map(String::valueOf)
+            .filter(value -> value.indexOf("9") != -1)
+            .map(value -> value.chars().filter(ch -> ch == '9').count())
+            .reduce(0L, Long::sum);
 
         System.out.println(solution);
         assertThat(solution).isEqualTo(19);
