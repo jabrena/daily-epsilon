@@ -13,9 +13,7 @@ public class Problem20220219 {
         var solution = IntStream
             .rangeClosed(10, 99)
             .boxed()
-            .map(String::valueOf)
-            .filter(value -> value.indexOf("9") != -1)
-            .map(value -> value.chars().filter(ch -> ch == '9').count())
+            .map(value -> value.toString().chars().filter(ch -> ch == '9').count())
             .reduce(0L, Long::sum);
 
         System.out.println(solution);
