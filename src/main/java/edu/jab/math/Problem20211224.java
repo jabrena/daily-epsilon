@@ -19,8 +19,7 @@ public class Problem20211224 {
         var iterations = 1000;
         var digitLimit = 2;
 
-        var resultList = IntStream
-            .range(1, iterations)
+        var resultList = IntStream.range(1, iterations)
             .boxed()
             .map(baseConversion)
             .takeWhile(s -> s.length() <= digitLimit)

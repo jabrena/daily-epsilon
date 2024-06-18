@@ -1,6 +1,3 @@
-/// usr/bin/env jbang "$0" "$@" ; exit $?
-//DEPS org.assertj:assertj-core:3.21.0
-
 package edu.jab.math;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -19,8 +16,7 @@ public class Problem20220125 {
         record Combination(Long x, Long y) {}
 
         Function<Integer, Stream<Combination>> crossProduct = number ->
-            LongStream
-                .rangeClosed(1, number)
+            LongStream.rangeClosed(1, number)
                 .mapToObj(x -> LongStream.rangeClosed(1, number).mapToObj(y -> new Combination(x, y)))
                 .flatMap(x -> x);
 

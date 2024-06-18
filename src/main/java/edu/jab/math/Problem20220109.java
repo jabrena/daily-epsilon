@@ -1,7 +1,3 @@
-/// usr/bin/env jbang "$0" "$@" ; exit $?
-//DEPS org.assertj:assertj-core:3.21.0
-//DEPS org.apache.commons:commons-math3:3.6.1
-
 package edu.jab.math;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -23,8 +19,7 @@ public class Problem20220109 {
         // Alternative 1
 
         Predicate<Integer> isDivisible_1_to_20 = number -> {
-            var counter = IntStream
-                .rangeClosed(1, 20)
+            var counter = IntStream.rangeClosed(1, 20)
                 .boxed()
                 .map(n -> (number % n == 0) ? 1 : 0)
                 .reduce(0, Integer::sum);
@@ -35,8 +30,7 @@ public class Problem20220109 {
         Function<Integer, Integer> toDigitSize = number -> String.valueOf(number).length();
 
         Supplier<Integer> compute = () ->
-            Stream
-                .iterate(1, i -> i + 1) // Infinite Stream
+            Stream.iterate(1, i -> i + 1) // Infinite Stream
                 .parallel()
                 .filter(isDivisible_1_to_20)
                 .limit(1)
@@ -48,8 +42,7 @@ public class Problem20220109 {
         // Defensive coding using Timeout handling
         // Stream API doesn´t have timeout support
         Supplier<Integer> computeAsync = () ->
-            CompletableFuture
-                .supplyAsync(() -> compute.get())
+            CompletableFuture.supplyAsync(() -> compute.get())
                 .orTimeout(120, TimeUnit.SECONDS)
                 .handle((response, ex) -> (Objects.isNull(ex)) ? response : -99)
                 .join();

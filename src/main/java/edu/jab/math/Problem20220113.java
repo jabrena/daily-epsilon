@@ -1,7 +1,3 @@
-/// usr/bin/env jbang "$0" "$@" ; exit $?
-//DEPS org.assertj:assertj-core:3.21.0
-//DEPS org.apache.commons:commons-math3:3.6.1
-
 package edu.jab.math;
 
 import static org.assertj.core.api.Assertions.assertThat;

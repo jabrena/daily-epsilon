@@ -1,7 +1,3 @@
-/// usr/bin/env jbang "$0" "$@" ; exit $?
-//DEPS org.assertj:assertj-core:3.21.0
-//DEPS org.apache.commons:commons-math3:3.6.1
-
 package edu.jab.math;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -19,8 +15,7 @@ public class Problem20220123 {
         Predicate<Integer> checkPrimeDigits = number -> {
             var stringValue = String.valueOf(number);
             var digitLen = stringValue.length();
-            var countPrimes = Stream
-                .of(stringValue)
+            var countPrimes = Stream.of(stringValue)
                 .flatMap(s -> s.chars().mapToObj(c -> (char) c))
                 .map(String::valueOf)
                 .map(Integer::valueOf)

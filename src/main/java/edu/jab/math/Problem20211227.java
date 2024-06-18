@@ -18,8 +18,7 @@ public class Problem20211227 {
 
         var iterations = 100;
 
-        var result = IntStream
-            .range(1, iterations)
+        var result = IntStream.range(1, iterations)
             .boxed()
             .map(calculateIteration)
             .reduce(BigDecimal.ZERO, BigDecimal::add); // Sum
