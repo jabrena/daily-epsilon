@@ -1,6 +1,3 @@
-/// usr/bin/env jbang "$0" "$@" ; exit $?
-//DEPS org.assertj:assertj-core:3.21.0
-
 package edu.jab.math;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -20,8 +17,7 @@ public class Problem20220106 {
         var precision = new MathContext(20);
 
         var op1 = new BigDecimal(String.valueOf(Math.PI)).pow(2, precision);
-        var op2 = IntStream
-            .rangeClosed(1, iterations)
+        var op2 = IntStream.rangeClosed(1, iterations)
             .boxed()
             .map(n -> 1 / Math.pow(n, 2)) // TODO Refactor using only BigDecimal methods
             .map(String::valueOf)

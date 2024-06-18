@@ -1,6 +1,3 @@
-/// usr/bin/env jbang "$0" "$@" ; exit $?
-//DEPS org.assertj:assertj-core:3.21.0
-
 package edu.jab.math;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -37,8 +34,7 @@ public class Problem20220102 {
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
         };
 
-        Stream
-            .iterate(1, i -> i + 1) // Infinite Stream
+        Stream.iterate(1, i -> i + 1) // Infinite Stream
             .limit(iterations)
             .filter(isPerfect)
             .map(extractDivisors)

@@ -1,7 +1,3 @@
-/// usr/bin/env jbang "$0" "$@" ; exit $?
-//DEPS org.assertj:assertj-core:3.21.0
-//DEPS org.apache.commons:commons-math3:3.6.1
-
 package edu.jab.math;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -17,14 +13,12 @@ public class Problem20220111 {
         // TODO Replace with this function DRY
         // https://commons.apache.org/proper/commons-math/javadocs/api-3.3/org/apache/commons/math3/util/CombinatoricsUtils.html#factorial(int)
         Function<Long, BigDecimal> factorial = limit ->
-            LongStream
-                .iterate(limit, i -> i - 1)
+            LongStream.iterate(limit, i -> i - 1)
                 .limit(limit)
                 .mapToObj(BigDecimal::valueOf)
                 .reduce(BigDecimal.ONE, BigDecimal::multiply);
 
-        var numerator = LongStream
-            .rangeClosed(1, 5)
+        var numerator = LongStream.rangeClosed(1, 5)
             .boxed()
             .map(factorial)
             .reduce(BigDecimal.ONE, BigDecimal::multiply);

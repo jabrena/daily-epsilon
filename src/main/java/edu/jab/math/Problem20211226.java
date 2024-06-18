@@ -1,7 +1,3 @@
-/// usr/bin/env jbang "$0" "$@" ; exit $?
-//DEPS org.assertj:assertj-core:3.21.0
-//DEPS org.apache.commons:commons-math3:3.6.1
-
 package edu.jab.math;
 
 import java.math.BigDecimal;
@@ -16,8 +12,7 @@ public class Problem20211226 {
 
         Predicate<Integer> isOdd = number -> (number % 2 == 0) ? false : true;
 
-        var result = Stream
-            .iterate(1, i -> i + 1) // Infinite Stream
+        var result = Stream.iterate(1, i -> i + 1) // Infinite Stream
             .skip(1) // 1 is not a prime number
             .filter(isPrime)
             .filter(isOdd)

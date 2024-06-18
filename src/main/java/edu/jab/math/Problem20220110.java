@@ -1,7 +1,3 @@
-/// usr/bin/env jbang "$0" "$@" ; exit $?
-//DEPS org.assertj:assertj-core:3.21.0
-//DEPS org.apache.commons:commons-math3:3.6.1
-
 package edu.jab.math;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -24,14 +20,12 @@ public class Problem20220110 {
         record Solution(Long x, Long y) {}
 
         Function<Integer, Stream<Solution>> crossProduct = number ->
-            LongStream
-                .rangeClosed(1, number)
+            LongStream.rangeClosed(1, number)
                 .mapToObj(x -> LongStream.rangeClosed(1, number).mapToObj(y -> new Solution(x, y)))
                 .flatMap(x -> x);
 
         Function<Long, BigDecimal> factorial = limit ->
-            IntStream
-                .iterate(limit.intValue(), i -> i - 1)
+            IntStream.iterate(limit.intValue(), i -> i - 1)
                 .limit(limit)
                 .mapToObj(BigDecimal::valueOf)
                 .reduce(BigDecimal.ONE, BigDecimal::multiply);
@@ -43,8 +37,7 @@ public class Problem20220110 {
         };
 
         Function<Integer, Solution> algorithm = complexity ->
-            Stream
-                .of(complexity)
+            Stream.of(complexity)
                 .flatMap(crossProduct) // Get all combinations
                 .filter(checkEquation) // Check y!(y-1)! = x!
                 .max(Comparator.comparing(Solution::x)) // Get Max
@@ -69,8 +62,7 @@ public class Problem20220110 {
             return new MetadataSolution(complexity, result, processingTime);
         };
 
-        var algorithmData = IntStream
-            .iterate(100, i -> i + 100)
+        var algorithmData = IntStream.iterate(100, i -> i + 100)
             .parallel()
             .limit(5)
             .mapToObj(x -> processingTimeDecorator.apply(x))
