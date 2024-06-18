@@ -11,7 +11,7 @@ In this folder, I will try to solve Math problems from:
 ## How to run in local?
 
 ```bash
-sdk install jbang
+sdk env install
 
 ./mvnw clean verify
 
